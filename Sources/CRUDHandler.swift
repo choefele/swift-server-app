@@ -21,6 +21,10 @@ class CRUDHandler<Item where Item: MongoConvertible, Item: DictionaryConvertible
     }
     
     func handleItems(request: RouterRequest, response: RouterResponse, next: () -> Void) throws {
+        defer {
+            next()
+        }
+
         if request.method == .get {
             let items = try getItems()
             let itemsAsJSON = JSON(["items": items.map { $0.dictionary }])
@@ -30,7 +34,6 @@ class CRUDHandler<Item where Item: MongoConvertible, Item: DictionaryConvertible
         } else {
             try response.send(status: .notFound).end()
         }
-        next()
     }
     
     func getItems() throws -> [Item] {
@@ -45,7 +48,25 @@ class CRUDHandler<Item where Item: MongoConvertible, Item: DictionaryConvertible
     }
     
     func handleItem(request: RouterRequest, response: RouterResponse, next: () -> Void) throws {
-        try response.send(status: .notFound).end()
-        next()
+        defer {
+            next()
+        }
+        
+        if request.method == .get {
+            guard let id = request.parameters["id"],
+                let item = try getItem(id: id) else {
+                    try response.send(status: .notFound).end()
+                    return
+            }
+            
+            response.send(json: JSON(item.dictionary))
+        } else {
+            try response.send(status: .notFound).end()
+        }
+    }
+    
+    func getItem(id: String) throws -> Item? {
+        let document = try collection.findOne(matching: "_id" == ObjectId(id))
+        return document.map(Item.init)
     }
 }
