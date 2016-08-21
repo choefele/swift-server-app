@@ -1,0 +1,10 @@
+version: '2'
+services:
+  db:
+    image: mongo:3.2
+  app:
+    build: .
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db

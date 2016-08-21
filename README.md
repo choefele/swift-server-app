@@ -19,6 +19,6 @@ Swift:
 - Test server by executing `curl http://localhost:8090/ping`
 
 ## Build & run in Docker
-- Build image with `docker build -t slackapp .`
-- Run with `docker run -it --rm -p 8090:8090 slackapp`
+- Build image with `docker-compose build`
+- Run with `docker-compose up -d` (stop: `docker-compose stop`, logs: `docker-compose logs -f`)
 - Test server by executing `curl http://localhost:8090/ping`
