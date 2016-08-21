@@ -11,16 +11,20 @@ do {
     let mongoServer = try Server(dbUrl)
     try mongoServer.connect()
     Log.info("Connected to Mongo DB \(dbUrl)")
+    
+    let router = Router()
+    
+    let itemsCRUDHandler = CRUDHandler<Item>(collection: mongoServer["db"]["items"])
+    router.all("/items", handler: itemsCRUDHandler.handleItems)
+    router.all("/items/:id", handler: itemsCRUDHandler.handleItem)
+    
+    router.get("/ping") { request, response, next in
+        response.send("pong")
+        next()
+    }
+    
+    Kitura.addHTTPServer(onPort: 8090, with: router)
+    Kitura.run()
 } catch {
     Log.error("Cannot connect to Mongo DB \(dbUrl)")
 }
-
-let router = Router()
-
-router.get("/ping") { request, response, next in
-  response.send("pong")
-  next()
-}
-
-Kitura.addHTTPServer(onPort: 8090, with: router)
-Kitura.run()
