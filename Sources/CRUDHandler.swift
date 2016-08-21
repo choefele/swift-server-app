@@ -36,12 +36,12 @@ class CRUDHandler<Item where Item: MongoConvertible, Item: DictionaryConvertible
         }
     }
     
-    func getItems() throws -> [Item] {
+    private func getItems() throws -> [Item] {
         let items: [Item] = try collection.find().map(Item.init)
         return items
     }
     
-    func createItem() throws {
+    private func createItem() throws {
         var document = Document()
         document["name"] = "name123"
         try collection.insert(document)
@@ -65,7 +65,7 @@ class CRUDHandler<Item where Item: MongoConvertible, Item: DictionaryConvertible
         }
     }
     
-    func getItem(id: String) throws -> Item? {
+    private func getItem(id: String) throws -> Item? {
         let document = try collection.findOne(matching: "_id" == ObjectId(id))
         return document.map(Item.init)
     }
