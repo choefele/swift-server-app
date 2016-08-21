@@ -1,10 +1,14 @@
 version: '2'
 services:
   db:
-    image: mongo:3.2
+    extends:
+      file: docker-compose-common.yml
+      service: db
   app:
-    build: .
-    ports:
-      - "8090:8090"
+    environment:
+      - DB_URL = mongodb://db
     depends_on:
       - db
+    extends:
+      file: docker-compose-common.yml
+      service: app

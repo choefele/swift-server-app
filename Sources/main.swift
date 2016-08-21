@@ -2,14 +2,17 @@ import Kitura
 import HeliumLogger
 import LoggerAPI
 import MongoKitten
+import Environment
 
 HeliumLogger.use()
 
+let dbUrl = Env["DB_URL"] ?? "mongodb://localhost"
 do {
-    let mongoServer = try Server("mongodb://db")
+    let mongoServer = try Server(dbUrl)
     try mongoServer.connect()
+    Log.info("Connected to Mongo DB \(dbUrl)")
 } catch {
-    Log.error("Cannot connect to Mongo DB")
+    Log.error("Cannot connect to Mongo DB \(dbUrl)")
 }
 
 let router = Router()

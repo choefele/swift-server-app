@@ -9,16 +9,18 @@ Swift:
 
 ## Build & run with Swift Package Manager
 - Run `swift build` in root folder, wait until dependencies have been downloaded and server has been built
+- Run dependent services `docker-compose -f docker-compose-dev.yml up`
 - Run server `./.build/debug/SlackApp`
 - Test server by executing `curl http://localhost:8090/ping`
 
 ## Build & run with Xcode 8
-- Generate Xcode project with `swift package generate-xcodeproj`
 - Run `swift package fetch` in root folder to update dependencies
+- Generate Xcode project with `swift package generate-xcodeproj`
+- Run dependent services `docker-compose -f docker-compose-dev.yml up`
 - Open `SlackApp.xcodeproj` in Xcode and Run `SlackApp` scheme
 - Test server by executing `curl http://localhost:8090/ping`
 
 ## Build & run in Docker
 - Build image with `docker-compose build`
-- Run with `docker-compose up -d` (stop: `docker-compose stop`, logs: `docker-compose logs -f`)
+- Run with `docker-compose up` (stop: `docker-compose stop`, logs: `docker-compose logs -f`)
 - Test server by executing `curl http://localhost:8090/ping`
