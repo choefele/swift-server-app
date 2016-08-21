@@ -22,7 +22,7 @@ extension Item: MongoConvertible {
 }
 
 extension Item: DictionaryConvertible {
-    var dictionary: [String : AnyObject] {
+    var dictionary: [String : AnyType] {
         return ["id": id, "name": name]
     }
 }

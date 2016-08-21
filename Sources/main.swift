@@ -4,6 +4,12 @@ import LoggerAPI
 import MongoKitten
 import Environment
 
+#if os(Linux)
+    public typealias AnyType = Any
+#else
+    public typealias AnyType = AnyObject
+#endif
+
 HeliumLogger.use()
 
 let dbUrl = Env["DB_URL"] ?? "mongodb://localhost"
