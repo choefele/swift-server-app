@@ -21,7 +21,7 @@ do {
     let router = Router()
 
     let mongoDatabaseProvider = CRUDMongoDatabaseProvider(collection: mongoServer["db"]["items"])
-    let itemsCRUDHandler = CRUDHandler<Item>(collection: mongoServer["db"]["items"], databaseProvider: mongoDatabaseProvider)
+    let itemsCRUDHandler = CRUDHandler<Item>(databaseProvider: mongoDatabaseProvider)
     router.all("/items", handler: itemsCRUDHandler.handleItems)
     router.all("/items/:id", handler: itemsCRUDHandler.handleItem)
     
