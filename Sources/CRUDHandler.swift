@@ -66,7 +66,10 @@ class CRUDHandler<Item where Item: MongoConvertible, Item: DictionaryConvertible
     }
     
     private func getItem(id: String) throws -> Item? {
-        let document = try collection.findOne(matching: "_id" == ObjectId(id))
+        guard let objectID = try? ObjectId(id) else {
+            return nil
+        }
+        let document = try collection.findOne(matching: "_id" == objectID)
         return document.map(Item.init)
     }
 }
