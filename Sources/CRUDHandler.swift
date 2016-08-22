@@ -32,9 +32,9 @@ class CRUDHandler<Item where Item: DictionaryConvertible> {
         } else if request.method == .post {
             let itemAsDictionary = try databaseProvider.createItem([String : AnyType]())
             let item = Item.init(dictionary: itemAsDictionary)
-            try response.send(status: .created).send(json: JSON(item.dictionary))
+            response.status(.created).send(json: JSON(item.dictionary))
         } else {
-            try response.send(status: .notFound).end()
+            try response.send(status: .notImplemented).end()
         }
     }
 
@@ -53,7 +53,7 @@ class CRUDHandler<Item where Item: DictionaryConvertible> {
             let item = Item.init(dictionary: itemAsDictionary)
             response.send(json: JSON(item.dictionary))
         } else {
-            try response.send(status: .notFound).end()
+            try response.send(status: .notImplemented).end()
         }
     }
 }
