@@ -9,5 +9,6 @@
 import Foundation
 
 protocol DictionaryConvertible {
+    init(dictionary: [String : AnyType])
     var dictionary: [String: AnyType] {get}
 }

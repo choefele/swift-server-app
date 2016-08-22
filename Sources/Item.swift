@@ -22,6 +22,11 @@ extension Item: MongoConvertible {
 }
 
 extension Item: DictionaryConvertible {
+    init(dictionary: [String : AnyType]) {
+        self.id = dictionary["id"] as! String
+        self.name = dictionary["name"] as? String ?? ""
+    }
+
     var dictionary: [String : AnyType] {
         return ["id": id, "name": name]
     }

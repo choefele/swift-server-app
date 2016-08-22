@@ -10,5 +10,5 @@ import Foundation
 import MongoKitten
 
 protocol MongoConvertible {
-    init(document: Document)
+//    init(document: Document)
 }
