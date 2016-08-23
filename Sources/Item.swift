@@ -27,3 +27,20 @@ extension Item: DictionaryConvertible {
         return dictionary
     }
 }
+
+extension Item: CRUDMongoDatabaseConvertibleV2 {
+    init(document: Document) {
+        self.id = document["_id"].objectIdValue!.hexString
+        self.name = document["name"].stringValue
+    }
+    
+    var document: Document {
+        var document = Document()
+        
+        if let name = name {
+            document["name"] = .string(name)
+        }
+        
+        return document
+    }
+}

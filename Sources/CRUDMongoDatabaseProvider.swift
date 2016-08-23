@@ -9,6 +9,43 @@
 import Foundation
 import MongoKitten
 
+protocol CRUDMongoDatabaseConvertibleV2 {
+    init(document: Document)
+    var document: Document {get}
+}
+
+class CRUDMongoDatabaseProviderV2<Item: CRUDMongoDatabaseConvertibleV2>: CRUDDatabaseProviderV2 {
+    let collection: MongoKitten.Collection
+    
+    init(collection: MongoKitten.Collection) {
+        self.collection = collection
+    }
+    
+    func readItems() throws -> [Item] {
+        let documents = try collection.find()
+        let items = documents.map(Item.init)
+        return items
+    }
+    
+    func createItem(_ item: Item) throws -> Item {
+        let document = item.document
+        let resultDocument = try collection.insert(document)
+        let resultItem = Item(document: resultDocument)
+        
+        return resultItem
+    }
+    
+    func readItem(id: String) throws -> Item? {
+        guard let objectID = try? ObjectId(id),
+            let document = try collection.findOne(matching: "_id" == objectID) else {
+                return nil
+        }
+        
+        let item = Item(document: document)
+        return item
+    }
+}
+
 class CRUDMongoDatabaseProvider: CRUDDatabaseProvider {
     let collection: MongoKitten.Collection
 

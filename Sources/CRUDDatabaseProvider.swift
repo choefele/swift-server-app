@@ -13,3 +13,11 @@ protocol CRUDDatabaseProvider {
     func createItem(_ item: [String: AnyType]) throws -> [String: AnyType]
     func readItem(id: String) throws -> [String: AnyType]?
 }
+
+protocol CRUDDatabaseProviderV2 {
+    associatedtype Item
+    
+    func readItems() throws -> [Item]
+    func createItem(_ item: Item) throws -> Item
+    func readItem(id: String) throws -> Item?
+}

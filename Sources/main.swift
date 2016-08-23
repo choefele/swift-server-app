@@ -19,6 +19,10 @@ do {
     Log.info("Connected to Mongo DB \(dbUrl)")
     
     let router = Router()
+    
+    let itemsDatabaseProviderV2 = CRUDMongoDatabaseProviderV2<Item>(collection: mongoServer["db"]["items"])
+    let itemsCRUDHandlerV2 = CRUDHandlerV2(databaseProvider: itemsDatabaseProviderV2)
+//    let item = try mongoDatabaseProviderV2.readItems()
 
     let mongoDatabaseProvider = CRUDMongoDatabaseProvider(collection: mongoServer["db"]["items"])
     let itemsCRUDHandler = CRUDHandler<Item>(databaseProvider: mongoDatabaseProvider)
