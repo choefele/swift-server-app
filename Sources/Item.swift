@@ -9,6 +9,44 @@
 import Foundation
 import MongoKitten
 
+struct Data {
+    var id: String
+    var name: String?
+}
+
+struct DataEndpoint {
+    static func generateDocument(parameters: [String: String]) -> Document {
+        return Document()
+    }
+    
+    static func generateItem(document: Document) -> Data {
+        return Data(id: "", name: "")
+    }
+    
+    static func generateJsonDictionary(data: Data) -> [String: AnyType] {
+        return ["test": "test"]
+    }
+}
+
+struct Data2 {
+    var id: String
+    var name: String?
+}
+
+struct Data2Endpoint {
+    static func generateDocument(parameters: [String: String]) -> Document {
+        return Document()
+    }
+    
+    static func generateItem(document: Document) -> Data2 {
+        return Data2(id: "", name: "")
+    }
+    
+    static func generateJsonDictionary(data: Data2) -> [String: AnyType] {
+        return ["test": "test"]
+    }
+}
+
 struct Item {
     var id: String
     var name: String?
