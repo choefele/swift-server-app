@@ -13,16 +13,16 @@ import MongoKitten
 
 // http://www.restapitutorial.com/lessons/httpmethods.html
 
-protocol CRUDHandlerType {
+protocol CRUDHandler {
     func handleItems(request: RouterRequest, response: RouterResponse, next: () -> Void) throws
     func handleItem(request: RouterRequest, response: RouterResponse, next: () -> Void) throws
 }
 
-class CRUDMongoHandler<Item>: CRUDHandlerType {
+class CRUDMongoHandler: CRUDHandler {
     let mongoProvider: CRUDMongoProvider
-    let endpoint: CRUDEndpoint<Item>
+    let endpoint: CRUDMongoEndpoint
     
-    init(endpoint: CRUDEndpoint<Item>) {
+    init(endpoint: CRUDMongoEndpoint) {
         self.mongoProvider = CRUDMongoProvider(collection: endpoint.collection)
         self.endpoint = endpoint
     }
@@ -34,13 +34,11 @@ class CRUDMongoHandler<Item>: CRUDHandlerType {
         
         if request.method == .get {
             let documents = try mongoProvider.readItems(query: Document())
-            let items = documents.map(endpoint.generateItem)
-            let jsonDictionaries = items.map(endpoint.generateJsonDictionary)
+            let jsonDictionaries = documents.map(endpoint.generateJsonDictionary)
             response.send(json: JSON(["items": jsonDictionaries]))
         } else if request.method == .post {
             let document = try mongoProvider.createItem(document: endpoint.generateDocument(parameters: request.parameters))
-            let item = endpoint.generateItem(document: document)
-            let jsonDictionary = endpoint.generateJsonDictionary(item: item)
+            let jsonDictionary = endpoint.generateJsonDictionary(document: document)
             response.status(.created).send(json: JSON(jsonDictionary))
         } else {
             try response.send(status: .notImplemented).end()
@@ -60,8 +58,7 @@ class CRUDMongoHandler<Item>: CRUDHandlerType {
                     return
             }
             
-            let item = endpoint.generateItem(document: document)
-            let jsonDictionary = endpoint.generateJsonDictionary(item: item)
+            let jsonDictionary = endpoint.generateJsonDictionary(document: document)
             response.send(json: JSON(jsonDictionary))
         } else {
             try response.send(status: .notImplemented).end()

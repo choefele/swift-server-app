@@ -20,10 +20,9 @@ do {
     
     let router = Router()
     
-    let itemEndpoint = CRUDEndpoint<Item>(collection: mongoServer["db"]["items"],
-                                          generateDocument: ItemEndpoint.generateDocument,
-                                          generateItem: ItemEndpoint.generateItem,
-                                          generateJsonDictionary: ItemEndpoint.generateJsonDictionary)
+    let itemEndpoint = CRUDMongoEndpoint(collection: mongoServer["db"]["items"],
+                                         generateDocument: ItemEndpoint.generateDocument,
+                                         generateJsonDictionary: ItemEndpoint.generateJsonDictionary)
     let itemHandler = CRUDMongoHandler(endpoint: itemEndpoint)
     router.all("/items", handler: itemHandler.handleItems)
     router.all("/items/:id", handler: itemHandler.handleItem)

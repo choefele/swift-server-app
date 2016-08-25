@@ -9,9 +9,8 @@
 import Foundation
 import MongoKitten
 
-struct CRUDEndpoint<Item> {
+struct CRUDMongoEndpoint {
     let collection: MongoKitten.Collection
     var generateDocument: (parameters: [String: String]) -> Document
-    var generateItem: (document: Document) -> Item
-    var generateJsonDictionary: (item: Item) -> [String: AnyType]
+    var generateJsonDictionary: (document: Document) -> [String: AnyType]
 }

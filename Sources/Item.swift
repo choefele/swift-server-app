@@ -19,18 +19,11 @@ struct ItemEndpoint {
         return Document()
     }
     
-    static func generateItem(document: Document) -> Item {
-        let id = document["_id"].objectIdValue!.hexString
-        let name = document["name"].stringValue
-        
-        return Item(id: id, name: name)
-    }
-    
-    static func generateJsonDictionary(item: Item) -> [String: AnyType] {
+    static func generateJsonDictionary(document: Document) -> [String: AnyType] {
         var dictionary = [String: AnyType]()
         
-        dictionary["id"] = item.id
-        dictionary["name"] = item.name
+        dictionary["id"] = document["_id"].objectIdValue!.hexString
+        dictionary["name"] = document["name"].stringValue
 
         return dictionary
     }
