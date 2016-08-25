@@ -13,12 +13,7 @@ import MongoKitten
 
 // http://www.restapitutorial.com/lessons/httpmethods.html
 
-protocol CRUDHandler {
-    func handleItems(request: RouterRequest, response: RouterResponse, next: () -> Void) throws
-    func handleItem(request: RouterRequest, response: RouterResponse, next: () -> Void) throws
-}
-
-class CRUDMongoHandler: CRUDHandler {
+class CRUDMongoHandler {
     let mongoProvider: CRUDMongoProvider
     let endpoint: CRUDMongoEndpoint
     

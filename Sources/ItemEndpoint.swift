@@ -9,11 +9,6 @@
 import Foundation
 import MongoKitten
 
-struct Item {
-    var id: String
-    var name: String?
-}
-
 struct ItemEndpoint {
     static func generateDocument(parameters: [String: String]) -> Document {
         return Document()
