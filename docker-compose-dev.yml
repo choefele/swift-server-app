@@ -12,4 +12,5 @@ services:
     extends:
       file: docker-compose-common.yml
       service: data
-
+volumes:
+  datavolume:

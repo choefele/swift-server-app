@@ -18,3 +18,5 @@ services:
       DB_URL: mongodb://db
     links:
       - db
+volumes:
+  datavolume:

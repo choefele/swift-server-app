@@ -5,7 +5,7 @@ services:
   data:
     image: alpine
     volumes:
-      - /data/db
+      - datavolume:/data/db
     command: echo Data container
   app:
     build: .
