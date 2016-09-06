@@ -6,3 +6,10 @@ services:
     extends:
       file: docker-compose-common.yml
       service: db
+    volumes_from:
+      - data
+  data:
+    extends:
+      file: docker-compose-common.yml
+      service: data
+

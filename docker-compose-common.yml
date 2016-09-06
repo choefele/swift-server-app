@@ -1,7 +1,12 @@
 version: '2'
 services:
   db:
-    image: mongo:3.2
+    image: mongo:3.2.9
+  data:
+    image: alpine
+    volumes:
+      - /data/db
+    command: echo Data container
   app:
     build: .
     ports:

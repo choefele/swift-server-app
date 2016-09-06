@@ -12,6 +12,10 @@ import Environment
 
 HeliumLogger.use()
 
+for e in Env.all() {
+    Log.info("\(e.key) = \(e.value)")
+}
+
 let dbUrl = Env["DB_URL"] ?? "mongodb://localhost"
 do {
     let mongoServer = try Server(dbUrl)
