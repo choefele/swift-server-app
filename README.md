@@ -7,6 +7,11 @@ Swift:
 - Select Xcode 8 as default `sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer/`
 - Swift toolchain in `PATH`, e.g. `export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH`
 
+## `swiftenv`
+- Install via `brew install kylef/formulae/swiftenv`
+- `echo 'if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi' >> ~/.bash_profile`
+- `swiftenv rehash`, `swiftenv install <version>`
+
 ## Build & run with Swift Package Manager
 - Run `swift build` in root folder, wait until dependencies have been downloaded and server has been built
 - Run dependent services `docker-compose -f docker-compose-dev.yml up`
