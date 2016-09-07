@@ -37,5 +37,7 @@ Swift:
 
 ### Provision on Digital Ocean
 - `docker-machine create --driver digitalocean --digitalocean-access-token <token> SlackApp`
+- `eval "$(docker-machine env SlackApp)"`, `eval "$(docker-machine env -u)"`
 - `docker-machine ssh SlackApp` to ssh into new machine
 - Export/import ssh setup: `https://github.com/bhurlow/machine-share`
+- `docker compose up` to start services
