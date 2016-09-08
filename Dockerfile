@@ -1,4 +1,4 @@
-FROM ibmcom/swift-ubuntu:latest
+FROM choefele/swift-ubuntu-docker:latest
 MAINTAINER Claus
 
 WORKDIR /app
