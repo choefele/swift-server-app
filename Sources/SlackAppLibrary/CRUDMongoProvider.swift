@@ -9,7 +9,7 @@
 import Foundation
 import MongoKitten
 
-class CRUDMongoProvider {
+public class CRUDMongoProvider {
     let collection: MongoKitten.Collection
     
     init(collection: MongoKitten.Collection) {

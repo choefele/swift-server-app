@@ -9,12 +9,12 @@
 import Foundation
 import MongoKitten
 
-struct ItemEndpoint {
-    static func generateDocument(parameters: [String: String]) -> Document {
+public struct ItemEndpoint {
+    public static func generateDocument(parameters: [String: String]) -> Document {
         return Document()
     }
     
-    static func generateJsonDictionary(document: Document) -> [String: AnyType] {
+    public static func generateJsonDictionary(document: Document) -> [String: AnyType] {
         var dictionary = [String: AnyType]()
         
         dictionary["id"] = document["_id"].objectIdValue!.hexString
