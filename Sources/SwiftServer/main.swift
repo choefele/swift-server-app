@@ -3,7 +3,7 @@ import HeliumLogger
 import LoggerAPI
 import MongoKitten
 import Environment
-import SlackAppLibrary
+import SwiftServerLibrary
 
 HeliumLogger.use()
 

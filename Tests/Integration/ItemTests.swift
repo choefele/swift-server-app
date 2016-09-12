@@ -1,12 +1,8 @@
-@testable import SlackAppLibrary
+@testable import SwiftServerLibrary
 import Kitura
 import XCTest
 
 class ItemTests: XCTestCase {
-
-    //let client = GetClient()
-//    let provider = CRUDMongoProvider()
-
     func testGetRequestStatusCode() {
         let e = expectation(description: "test")
         e.fulfill()

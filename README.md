@@ -1,5 +1,5 @@
-# SlackApp
-App for Slack with Swift and Docker
+# SwiftServer
+Server app with Swift and Docker
 
 Swift:
 - [DEVELOPMENT-SNAPSHOT-2016-07-25-a](https://swift.org/builds/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a-osx.pkg)
@@ -15,14 +15,14 @@ Swift:
 ## Build & run with Swift Package Manager
 - Run `swift build` in root folder, wait until dependencies have been downloaded and server has been built
 - Run dependent services `docker-compose -f docker-compose-dev.yml up`
-- Run server `./.build/debug/SlackApp`
+- Run server `./.build/debug/SwiftServer`
 - Test server by executing `curl http://localhost:8090/ping`
 
 ## Build & run with Xcode 8
 - Run `swift package fetch` in root folder to update dependencies
 - Generate Xcode project with `swift package generate-xcodeproj`
 - Run dependent services `docker-compose -f docker-compose-dev.yml up`
-- Open `SlackApp.xcodeproj` in Xcode and Run `SlackApp` scheme
+- Open `SwiftServer.xcodeproj` in Xcode and Run `SwiftServer` scheme
 - Test server by executing `curl http://localhost:8090/ping`
 
 ## Build & run in Docker
@@ -36,13 +36,13 @@ Swift:
 - Restart db instance to see that data persists in volume container
 
 ### Handle managed volumes
-- `docker inspect -f "{{json .Mounts}}" slackapp_db_1` to find out mount point
+- `docker inspect -f "{{json .Mounts}}" swiftserver_db_1` to find out mount point
 - `docker volume ls -f dangling=true` to find orphaned managed volumes
 - `docker volume rm $(docker volume ls -qf dangling=true)` to remove orphaned volumes
 
 ### Provision on Digital Ocean
-- `docker-machine create --driver digitalocean --digitalocean-access-token <token> SlackApp`
-- `eval "$(docker-machine env SlackApp)"`, `eval "$(docker-machine env -u)"`
-- `docker-machine ssh SlackApp` to ssh into new machine
+- `docker-machine create --driver digitalocean --digitalocean-access-token <token> SwiftServer`
+- `eval "$(docker-machine env SwiftServer)"`, `eval "$(docker-machine env -u)"`
+- `docker-machine ssh SwiftServer` to ssh into new machine
 - Export/import ssh setup: `https://github.com/bhurlow/machine-share`
 - `docker compose up` to start services

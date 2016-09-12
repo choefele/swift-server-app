@@ -1,6 +1,6 @@
 //
 //  CRUDHelper.swift
-//  SlackApp
+//  SwiftServer
 //
 //  Created by Claus Höfele on 21.08.16.
 //

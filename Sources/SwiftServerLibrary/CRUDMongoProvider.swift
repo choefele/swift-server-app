@@ -1,6 +1,6 @@
 //
 //  CRUDMongoDatabaseProvider.swift
-//  SlackApp
+//  SwiftServer
 //
 //  Created by Claus Höfele on 22/08/16.
 //

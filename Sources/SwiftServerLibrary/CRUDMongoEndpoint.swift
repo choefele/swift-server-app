@@ -1,6 +1,6 @@
 //
 //  CRUDEndpoint.swift
-//  SlackApp
+//  SwiftServer
 //
 //  Created by Claus Höfele on 25.08.16.
 //
