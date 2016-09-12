@@ -17,6 +17,8 @@ Swift:
 - Run dependent services `docker-compose -f docker-compose-dev.yml up`
 - Run server `./.build/debug/SwiftServer`
 - Test server by executing `curl http://localhost:8090/ping`
+- Test DB with `curl -X POST localhost:8090/items`, `curl http://localhost:8090/items`
+- Run unit tests with `swift test`
 
 ## Build & run with Xcode 8
 - Run `swift package fetch` in root folder to update dependencies
@@ -24,11 +26,14 @@ Swift:
 - Run dependent services `docker-compose -f docker-compose-dev.yml up`
 - Open `SwiftServer.xcodeproj` in Xcode and Run `SwiftServer` scheme
 - Test server by executing `curl http://localhost:8090/ping`
+- Test DB with `curl -X POST localhost:8090/items`, `curl http://localhost:8090/items`
+- Run unit tests with CMD-U
 
 ## Build & run in Docker
 - Build image with `docker-compose build`
 - Run with `docker-compose up [-d]` (stop: `docker-compose down [-v]`, logs: `docker-compose logs -f`)
 - Test server by executing `curl http://localhost:8090/ping`
+- Test DB with `curl -X POST localhost:8090/items`, `curl http://localhost:8090/items`
 
 ### Connect `mongo` to database server
 - `docker-compose run --rm db mongo mongodb://db` to connect to database
