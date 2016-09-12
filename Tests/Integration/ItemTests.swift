@@ -30,4 +30,31 @@ class ItemTests: XCTestCase {
 //            next()
 //        }
 //    }
+
+//    func testKitura() {
+//        // Set up router for this test
+//        let router = Router()
+//
+//        router.get("/zxcv/:p1") { request, _, next in
+//            let parameter = request.parameters["p1"]
+//            XCTAssertNotNil(parameter, "URL parameter p1 was nil")
+//            next()
+//        }
+//        router.get("/zxcv/ploni") { request, _, next in
+//            let parameter = request.parameters["p1"]
+//            XCTAssertNil(parameter, "URL parameter p1 was not nil, it's value was \(parameter!)")
+//            next()
+//        }
+//        router.all() { _, response, next in
+//            response.status(.OK).send("OK")
+//            next()
+//        }
+//
+//        performServerTest(router) { expectation in
+//            self.performRequest("get", path: "/zxcv/ploni", callback: { response in
+//                XCTAssertNotNil(response, "ERROR!!! ClientRequest response object was nil")
+//                expectation.fulfill()
+//            })
+//        }
+//    }
 }
