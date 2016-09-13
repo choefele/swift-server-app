@@ -19,7 +19,7 @@ do {
 
     let router = Router()
 
-    let itemEndpoint = CRUDMongoEndpoint(collection: mongoServer["db"]["items"],
+    let itemEndpoint = CRUDMongoEndpoint(collection: mongoServer["test"]["items"],
                                          generateDocument: ItemEndpoint.generateDocument,
                                          generateJsonDictionary: ItemEndpoint.generateJsonDictionary)
     let itemHandler = CRUDMongoHandler(endpoint: itemEndpoint)

@@ -37,7 +37,7 @@ Swift:
 
 ### Connect `mongo` to database server
 - `docker-compose run --rm db mongo mongodb://db` to connect to database
--- `use test`, `db.test.insert({})`, `db.test.find()` to create sample data
+-- `use test`, `db.items.insert({})`, `db.items.find()` to create sample data
 - Restart db instance to see that data persists in volume container
 
 ### Handle managed volumes
