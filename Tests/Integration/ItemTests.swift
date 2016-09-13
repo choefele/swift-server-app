@@ -12,6 +12,18 @@ class ItemTests: XCTestCase {
         XCTAssertEqual(40, 40)
     }
 
+    func testGenerateJsonDictionary() {
+        let id = ObjectId()
+        let name = "name"
+        var document = Document()
+        document["_id"] = .objectId(id)
+        document["name"] = .string(name)
+
+        let jsonDictionary = ItemEndpoint.generateJsonDictionary(document: document)
+        XCTAssertEqual(jsonDictionary["id"] as? String, id.hexString)
+        XCTAssertEqual(jsonDictionary["name"] as? String, name)
+    }
+
 //    func testRouter() {
 //        guard let mongoServer = try? Server("mongodb://localhost", automatically: false) else { XCTAssert(false); return }
 //        let router = Router()
