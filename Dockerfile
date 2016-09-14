@@ -4,7 +4,7 @@ MAINTAINER Claus
 WORKDIR /app
 
 COPY Package.swift /app/
-RUN swift package fetch
+RUN swift package fetch; exit 0
 
 EXPOSE 8090
 
