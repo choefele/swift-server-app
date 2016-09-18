@@ -1,0 +1,73 @@
+{
+	"id": "f807269b-a362-48e1-9c20-93a283b090f1",
+	"name": "SwiftServer",
+	"description": "",
+	"order": [
+		"53702c95-6b93-dcee-e940-ffb951a90513",
+		"f9556291-8c43-39ae-8792-801b9518c068",
+		"baa6cff1-9b70-3ee2-c685-c50cea818e8c"
+	],
+	"folders": [],
+	"timestamp": 1474219392030,
+	"owner": "",
+	"public": false,
+	"published": false,
+	"requests": [
+		{
+			"id": "53702c95-6b93-dcee-e940-ffb951a90513",
+			"headers": "",
+			"url": "{{base_url}}/ping",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"Body is correct\"] = responseBody === \"pong\";",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1474220487911,
+			"name": "Ping",
+			"description": "",
+			"collectionId": "f807269b-a362-48e1-9c20-93a283b090f1",
+			"responses": []
+		},
+		{
+			"id": "baa6cff1-9b70-3ee2-c685-c50cea818e8c",
+			"headers": "",
+			"url": "{{base_url}}/items",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"Status code is 201\"] = responseCode.code === 201;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"Created item has ID\"] = jsonData.id !== null;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1474223954276,
+			"name": "Create item",
+			"description": "",
+			"collectionId": "f807269b-a362-48e1-9c20-93a283b090f1",
+			"responses": []
+		},
+		{
+			"id": "f9556291-8c43-39ae-8792-801b9518c068",
+			"headers": "",
+			"url": "{{base_url}}/items",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"Response time is less than 200ms\"] = responseTime < 100;\n\nvar jsonData = JSON.parse(responseBody);\nvar schema = {\n    \"type\": \"object\",\n    \"required\": [ \"items\" ],\n    \"properties\": {\n        \"items\": { \n            \"type\": \"array\" ,\n            \"items\": {\n                \"type\": \"object\",\n                \"required\": [ \"id\" ],\n                \"properties\": {\n                    \"id\": {\n                        \"type\": \"string\",\n                        \"minLength\": 24\n                    }\n                }\n            }\n        }\n    }\n};\ntests[\"Valid JSON data\"] = tv4.validate(jsonData, schema);\nif (tv4.error) {\n    console.log(\"Validation failed: \", tv4.error);\n}",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1474226034849,
+			"name": "Read items",
+			"description": "",
+			"collectionId": "f807269b-a362-48e1-9c20-93a283b090f1",
+			"responses": []
+		}
+	]
+}

@@ -51,3 +51,7 @@ Swift:
 - `docker-machine ssh SwiftServer` to ssh into new machine
 - Export/import ssh setup: `https://github.com/bhurlow/machine-share`
 - `docker compose up` to start services
+
+## Integration tests
+- Install `newman` with `npm install newman --global`
+- Run `./run-integration-tests.sh`
