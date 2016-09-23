@@ -32,8 +32,8 @@ public class CRUDMongoHandler {
             let jsonDictionaries = documents.map(endpoint.generateJsonDictionary)
             response.send(json: JSON(["items": jsonDictionaries]))
         } else if request.method == .post {
-            let document = try mongoProvider.createItem(document: endpoint.generateDocument(parameters: request.parameters))
-            let jsonDictionary = endpoint.generateJsonDictionary(document: document)
+            let document = try mongoProvider.createItem(document: endpoint.generateDocument(request.parameters))
+            let jsonDictionary = endpoint.generateJsonDictionary(document)
             response.status(.created).send(json: JSON(jsonDictionary))
         } else {
             try response.send(status: .notImplemented).end()
@@ -53,7 +53,7 @@ public class CRUDMongoHandler {
                     return
             }
             
-            let jsonDictionary = endpoint.generateJsonDictionary(document: document)
+            let jsonDictionary = endpoint.generateJsonDictionary(document)
             response.send(json: JSON(jsonDictionary))
         } else {
             try response.send(status: .notImplemented).end()

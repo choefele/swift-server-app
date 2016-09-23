@@ -16,13 +16,13 @@ import MongoKitten
 #endif
 
 public struct CRUDMongoEndpoint {
-    public init(collection: MongoKitten.Collection, generateDocument: (parameters: [String: String]) -> Document, generateJsonDictionary: (document: Document) -> [String: AnyType]) {
+    public init(collection: MongoKitten.Collection, generateDocument: @escaping ([String: String]) -> Document, generateJsonDictionary: @escaping (Document) -> [String: Any]) {
         self.collection = collection
         self.generateDocument = generateDocument
         self.generateJsonDictionary = generateJsonDictionary
     }
     
     public let collection: MongoKitten.Collection
-    public var generateDocument: (parameters: [String: String]) -> Document
-    public var generateJsonDictionary: (document: Document) -> [String: AnyType]
+    public var generateDocument: ([String: String]) -> Document
+    public var generateJsonDictionary: (Document) -> [String: Any]
 }

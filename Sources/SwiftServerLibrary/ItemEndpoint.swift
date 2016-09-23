@@ -14,9 +14,9 @@ public struct ItemEndpoint {
         return Document()
     }
     
-    public static func generateJsonDictionary(document: Document) -> [String: AnyType] {
-        var dictionary = [String: AnyType]()
-        
+    public static func generateJsonDictionary(document: Document) -> [String: Any] {
+        var dictionary = [String: Any]()
+
         dictionary["id"] = document["_id"].objectIdValue!.hexString
         dictionary["name"] = document["name"].stringValue
 
