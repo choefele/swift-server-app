@@ -4,6 +4,11 @@ import MongoKitten
 import XCTest
 
 class ItemTests: XCTestCase {
+    static let allTests = [
+        ("testGetRequestStatusCode", testGetRequestStatusCode),
+        ("testGenerateJsonDictionary", testGenerateJsonDictionary)
+    ]
+
     func testGetRequestStatusCode() {
         let e = expectation(description: "test")
         e.fulfill()
