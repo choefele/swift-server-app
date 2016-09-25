@@ -1,15 +1,10 @@
 # SwiftServer
 Server app with Swift and Docker
 
-Swift:
-- [DEVELOPMENT-SNAPSHOT-2016-07-25-a](https://swift.org/builds/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a-osx.pkg)
-- Xcode: [Xcode 8b6](https://developer.apple.com/download/) with DEVELOPMENT-SNAPSHOT-2016-07-25-a as toolchain
+## Swift
+- Xcode: [Xcode 8](https://developer.apple.com/download/)
 - Select Xcode 8 as default `sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer/`
-- Swift toolchain in `PATH`, e.g. `export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH`
-
-## `swiftenv`
-- Install via `brew install kylef/formulae/swiftenv`
-- `echo 'if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi' >> ~/.bash_profile`
+- Install `swiftenv` via [Homebrew](https://swiftenv.fuller.li/en/latest/installation.html#via-homebrew)
 - `swiftenv rehash`, `swiftenv install <version>`
 
 ## Build & run with Swift Package Manager
