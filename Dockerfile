@@ -3,11 +3,12 @@ MAINTAINER Claus
 
 WORKDIR /app
 
-COPY Package.swift /app/
+COPY Package.swift ./
 RUN swift package fetch; exit 0
 
 EXPOSE 8090
 
-COPY Sources /app/Sources
-RUN swift build
+COPY Sources ./Sources
+COPY Tests ./Tests
+RUN swift test
 CMD ./.build/debug/SwiftServer
