@@ -1,0 +1,22 @@
+version: '2'
+services:
+  db:
+    extends:
+      file: docker-compose-common.yml
+      service: db
+    volumes_from:
+      - data
+  data:
+    extends:
+      file: docker-compose-common.yml
+      service: data
+  app:
+    extends:
+      file: docker-compose-common.yml
+      service: app
+    environment:
+      DB_URL: mongodb://db
+    links:
+      - db
+volumes:
+  datavolume:
