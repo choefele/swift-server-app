@@ -3,7 +3,7 @@ services:
   db:
     image: mongo:3.2.9
   data:
-    image: alpine
+    image: alpine:3.4
     volumes:
       - datavolume:/data/db
     command: echo Data container
