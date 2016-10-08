@@ -1,6 +1,8 @@
 # SwiftServer
 Server app with Swift and Docker
 
+[![Build Status](https://travis-ci.org/choefele/swift-server-app.svg?branch=master)](https://travis-ci.org/choefele/swift-server-app)
+
 ## Swift
 - Xcode: [Xcode 8](https://developer.apple.com/download/)
 - Select Xcode 8 as default `sudo xcode-select -s /Applications/Xcode-beta.app/Contents/Developer/`
