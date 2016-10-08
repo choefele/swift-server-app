@@ -7,6 +7,7 @@ services:
   - docker
 
 install:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker --version
   - docker-compose --version
   - docker-compose -f docker-compose-ci.yml build
