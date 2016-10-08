@@ -1,0 +1,17 @@
+sudo: required
+language: node_js
+node_js:
+  - "4""
+
+services:
+  - docker
+
+install:
+  - docker-compose -f docker-compose-ci.yml build
+  - docker-compose -f docker-compose-ci.yml up -d
+
+before_script:
+  - npm install -g newman
+
+script:
+  - ./run-integration-tests.sh
