@@ -1,7 +1,11 @@
-FROM ibmcom/swift-ubuntu:latest
+FROM smithmicro/swift:3.0
 MAINTAINER Claus
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+  libssl-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY Package.swift ./
 RUN swift package fetch; exit 0
