@@ -8,6 +8,6 @@ services:
       - datavolume:/data/db
     command: echo Data container
   app:
-    build: .
+    image: choefele/swift-server-app
     ports:
       - "8090:8090"

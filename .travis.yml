@@ -15,3 +15,10 @@ before_script:
 
 script:
   - ./run-integration-tests.sh
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker tag choefele/swift-server-app choefele/swift-server-app:${TRAVIS_COMMIT::8}-$TRAVIS_BUILD_NUMBER;
+    docker push choefele/swift-server-app;
+    fi
