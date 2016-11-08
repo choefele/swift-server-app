@@ -1,4 +1,4 @@
-FROM smithmicro/swift:3.0
+FROM smithmicro/swift:3.0.1
 MAINTAINER Claus
 
 WORKDIR /app
