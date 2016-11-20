@@ -1,5 +1,9 @@
+<p align="center" >
+  <img src="https://raw.githubusercontent.com/choefele/swift-server-app/master/swift%2Bdocker.png" alt="Swift + Docker" title="Swift + Docker">
+</p>
+
 # SwiftServer
-Server app with Swift and Docker
+Template to build a server app with Swift and Docker
 
 [![Build Status](https://travis-ci.org/choefele/swift-server-app.svg?branch=master)](https://travis-ci.org/choefele/swift-server-app)
 
