@@ -16,26 +16,23 @@ public class CRUDMongoProvider {
         self.collection = collection
     }
     
-    func createItem(document: Document) throws -> Document {
-        let resultDocument = try collection.insert(document)
-        return resultDocument
+    func createItem(document: Document) throws -> Document? {
+        let objectId = try collection.insert(document)
+        return try collection.findOne("_id" == objectId)
     }
     
-    func readItems(query: QueryProtocol) throws -> [Document] {
-        let documents = try collection.find(matching: query)
+    func readItems(query: Query) throws -> [Document] {
+        let documents = try collection.find(query)
         return Array(documents)
     }
     
     func readItem(objectId: ObjectId) throws -> Document? {
-        let document = try collection.findOne(matching: "_id" == objectId)
+        let document = try collection.findOne("_id" == objectId)
         return document
     }
     
     func deleteItem(objectId: ObjectId) throws -> Bool {
-        guard let document = try collection.findOne(matching: "_id" == objectId) else {
-            return false
-        }
-        try collection.remove(matching: document)
-        return true
+        let numDocuments = try collection.remove("_id" == objectId, limitedTo: 1)
+        return numDocuments == 1
     }
 }

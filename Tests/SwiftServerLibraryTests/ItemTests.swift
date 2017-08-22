@@ -21,8 +21,8 @@ class ItemTests: XCTestCase {
         let id = ObjectId()
         let name = "name"
         var document = Document()
-        document["_id"] = .objectId(id)
-        document["name"] = .string(name)
+        document["_id"] = ObjectId(id)
+        document["name"] = name
 
         let jsonDictionary = ItemEndpoint.generateJsonDictionary(document: document)
         XCTAssertEqual(jsonDictionary["id"] as? String, id.hexString)

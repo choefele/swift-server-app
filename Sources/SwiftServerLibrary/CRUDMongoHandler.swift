@@ -28,11 +28,15 @@ public class CRUDMongoHandler {
         }
         
         if request.method == .get {
-            let documents = try mongoProvider.readItems(query: Document())
+            let documents = try mongoProvider.readItems(query: Query())
             let jsonDictionaries = documents.map(endpoint.generateJsonDictionary)
             response.send(json: JSON(["items": jsonDictionaries]))
         } else if request.method == .post {
-            let document = try mongoProvider.createItem(document: endpoint.generateDocument(request.parameters))
+            guard let document = try mongoProvider.createItem(document: endpoint.generateDocument(request.parameters)) else {
+                try response.send(status: .internalServerError).end()
+                return
+            }
+
             let jsonDictionary = endpoint.generateJsonDictionary(document)
             response.status(.created).send(json: JSON(jsonDictionary))
         } else {

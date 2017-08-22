@@ -14,7 +14,6 @@ for e in Env.all() {
 let dbUrl = Env["DB_URL"] ?? "mongodb://localhost"
 do {
     let mongoServer = try Server(dbUrl)
-    try mongoServer.connect()
     Log.info("Connected to Mongo DB \(dbUrl)")
 
     let router = Router()
