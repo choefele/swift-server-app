@@ -1,9 +1,12 @@
 import Kitura
+import KituraNet
 import HeliumLogger
 import LoggerAPI
 import MongoKitten
 import Environment
 import SwiftServerLibrary
+import SwiftyJSON
+import Foundation
 
 HeliumLogger.use()
 
@@ -29,6 +32,16 @@ do {
         response.send("pong")
         next()
     }
+
+    router.get("/jenkins") {request, response, next in
+        JenkinsService.fetchLatestBuild({ (buildNumber, status) in
+            let displayString = "\(buildNumber) - \(status)"
+            response.send(displayString)
+            next()
+        })
+    }
+
+
 
     Kitura.addHTTPServer(onPort: 8090, with: router)
     Kitura.run()
